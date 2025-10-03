@@ -1,0 +1,51 @@
+{
+    "tasks1": {
+        "id": "1",
+        "description": "Trabajar",
+        "status": "todo",
+        "createdAt": "2025-10-02 23:21",
+        "updatedAt": "2025-10-02 23:26"
+    },
+    "tasks2": {
+        "id": "2",
+        "description": "test1",
+        "status": "todo",
+        "createdAt": "2025-10-02 23:48",
+        "updatedAt": "2025-10-02 23:49"
+    },
+    "tasks3": {
+        "id": "3",
+        "description": "test2",
+        "status": "todo",
+        "createdAt": "2025-10-02 23:48",
+        "updatedAt": "2025-10-02 23:49"
+    },
+    "tasks4": {
+        "id": "4",
+        "description": "test3",
+        "status": "in-progress",
+        "createdAt": "2025-10-02 23:49",
+        "updatedAt": "2025-10-02 23:50"
+    },
+    "tasks5": {
+        "id": "5",
+        "description": "test4",
+        "status": "in-progress",
+        "createdAt": "2025-10-02 23:49",
+        "updatedAt": "2025-10-02 23:50"
+    },
+    "tasks6": {
+        "id": "6",
+        "description": "test5",
+        "status": "in-progress",
+        "createdAt": "2025-10-02 23:49",
+        "updatedAt": "2025-10-02 23:50"
+    },
+    "tasks7": {
+        "id": "7",
+        "description": "test6",
+        "status": "done",
+        "createdAt": "2025-10-02 23:49",
+        "updatedAt": "2025-10-02 23:50"
+    }
+}

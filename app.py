@@ -54,17 +54,17 @@ def show_tasks(status=None):
                 
                 desc = task.get('description') or task.get('drescription', 'Sin descripción')
                 
-                print(f"\n🔹 Tarea: {key}")
-                print(f"   ID: {task.get('id')}")
-                print(f"   Descripción: {desc}")
-                print(f"   Estado: {task.get('status')}")
-                print(f"   Creado: {task.get('createdAt')}")
-                print(f"   Actualizado: {task.get('updatedAt')}")
+                print(f"\nTarea: {key}")
+                print(f"  -ID: {task.get('id')}")
+                print(f"  -Descripción: {desc}")
+                print(f"  -Estado: {task.get('status')}")
+                print(f"  -Creado: {task.get('createdAt')}")
+                print(f"  -Actualizado: {task.get('updatedAt')}")
             
             print("\n" + "="*50)
             
         except json.JSONDecodeError:
-            print("⚠️ El archivo JSON está vacío o corrupto.")
+            print("El archivo JSON está vacío o corrupto.")
         
 def update_task(id, drescription):
     
@@ -111,8 +111,36 @@ def delete_task(id):
     with open("datos.json", "w") as outfile:
         json.dump(tasks, outfile, indent=4)
 
-def mark_task(status, id):
-    pass
+def mark_task(id,status):
+    opciones = ['todo', 'in-progress', 'done']  
+
+    if status not in opciones:
+        print(f"Ingrese un estado válido: {opciones} {status}")
+        return
+
+    if not os.path.exists("datos.json"):
+        print("No existe el archivo de tareas.")
+        return
+
+    with open("datos.json", "r") as infile:
+        try:
+            tasks = json.load(infile)
+        except json.JSONDecodeError:
+            print("El archivo JSON está vacío o corrupto.")
+            return
+
+    task_key = f"tasks{id}"
+    if task_key in tasks:
+        tasks[task_key]["status"] = status
+        tasks[task_key]["updatedAt"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        print(f"Tarea {id} actualizada con éxito.")
+    else:
+        print(f"No existe la tarea con id {id}")
+        return
+
+    with open("datos.json", "w") as outfile:
+        json.dump(tasks, outfile, indent=4)
+
     
 while True:
     print("\nTask CLI")
@@ -121,7 +149,7 @@ while True:
     print("3. Listar tareas por estado")
     print("4. Actualizar tarea")
     print("5. Eliminar tarea")
-    print("6. Marcar tarea (todo / in_progress / done)")
+    print("6. Marcar tarea (todo / in-progress / done)")
     print("0. Salir")
 
     opcion = input("Elige una opción: ")
@@ -135,7 +163,7 @@ while True:
 
     elif opcion == "3":
         estado = input("Ingrese estado (todo / in_progress / done): ")
-        show_tasks()
+        show_tasks(estado)
 
     elif opcion == "4":
         id = input("Ingrese el ID de la tarea: ")
